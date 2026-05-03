@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Bûcherie — Crêperie Traditionnelle &amp; Gastronomique · Vierzon</title>
+  <link href="La%20B%C3%BBcherie%20%E2%80%94%20Cr%C3%AAperie%20Traditionnelle%20&amp;%20Gastronomique%20%C2%B7%20Vierzon_files/css2.css" rel="stylesheet">
+  <style>
+    :root {
+      --brown-deep:   #1A1008;
+      --brown-dark:   #2C1F12;
+      --brown-mid:    #4A3728;
+      --brown-warm:   #7A5C44;
+      --cream:        #F7EDD8;
+      --cream-light:  #FDF7EE;
+      --stone:        #CFC2AD;
+      --gold:         #C8943A;
+      --gold-light:   #E5B96A;
+      --gold-pale:    #F0D9A8;
+      --ember:        #8B2E0A;
+      --white:        #FFFAF3;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--cream-light);
+      color: var(--brown-deep);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+    .italic-serif { font-family: 'Cormorant Garamond', serif; font-style: italic; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 3rem;
+      background: transparent;
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(26,16,8,0.96);
+      box-shadow: 0 2px 24px rgba(0,0,0,0.4);
+      backdrop-filter: blur(8px);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--gold-light);
+      letter-spacing: 0.05em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--stone); text-decoration: none;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative; height: 100vh; min-height: 640px;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(26,16,8,0.55) 0%, rgba(26,16,8,0.20) 50%, rgba(26,16,8,0.72) 100%),
+        url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1800&q=85') center/cover no-repeat;
+    }
+    /* Woodgrain texture overlay */
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        92deg,
+        transparent 0px, transparent 3px,
+        rgba(0,0,0,0.03) 3px, rgba(0,0,0,0.03) 4px
+      );
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 2rem;
+      animation: heroFadeIn 1.4s ease forwards;
+    }
+    @keyframes heroFadeIn {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-badge {
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--gold-light); border: 1px solid rgba(200,148,58,0.5);
+      padding: 0.45rem 1.4rem; border-radius: 2px;
+      margin-bottom: 1.5rem;
+      animation: heroFadeIn 1.4s 0.2s ease both;
+    }
+    .hero-title {
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-weight: 700; line-height: 0.95;
+      color: var(--white);
+      letter-spacing: -0.01em;
+      text-shadow: 0 4px 40px rgba(0,0,0,0.5);
+      animation: heroFadeIn 1.4s 0.35s ease both;
+    }
+    .hero-title span { color: var(--gold-light); font-style: italic; }
+    .hero-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      font-style: italic; font-weight: 300;
+      color: var(--cream); margin-top: 1rem;
+      letter-spacing: 0.04em;
+      animation: heroFadeIn 1.4s 0.5s ease both;
+    }
+    .hero-divider {
+      display: flex; align-items: center; justify-content: center;
+      gap: 1rem; margin: 1.8rem auto; width: 260px;
+      animation: heroFadeIn 1.4s 0.65s ease both;
+    }
+    .hero-divider::before, .hero-divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold));
+    }
+    .hero-divider::after { background: linear-gradient(to left, transparent, var(--gold)); }
+    .hero-divider-icon { color: var(--gold); font-size: 1.1rem; }
+    .hero-actions {
+      display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap;
+      animation: heroFadeIn 1.4s 0.8s ease both;
+    }
+    .btn-gold {
+      background: var(--gold); color: var(--brown-deep);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 0.85rem 2.2rem; border: none; cursor: pointer; text-decoration: none;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      display: inline-block;
+    }
+    .btn-gold:hover {
+      background: var(--gold-light);
+      box-shadow: 0 6px 30px rgba(200,148,58,0.45);
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      background: transparent; color: var(--cream);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 0.85rem 2.2rem; border: 1px solid rgba(247,237,216,0.55);
+      cursor: pointer; text-decoration: none; display: inline-block;
+      transition: border-color 0.25s, color 0.25s, transform 0.2s;
+    }
+    .btn-outline:hover {
+      border-color: var(--gold-light); color: var(--gold-light);
+      transform: translateY(-2px);
+    }
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2.2s infinite;
+      color: rgba(247,237,216,0.6); font-size: 1.5rem;
+      cursor: pointer; z-index: 3;
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50%      { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 5rem 1.5rem; }
+    .section-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold); display: block; margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; line-height: 1.1;
+      color: var(--brown-deep);
+    }
+    .ornament {
+      display: flex; align-items: center; gap: 0.8rem;
+      margin: 1.2rem 0 1.8rem;
+    }
+    .ornament-line {
+      width: 48px; height: 1px;
+      background: var(--gold);
+    }
+    .ornament-diamond {
+      width: 6px; height: 6px;
+      background: var(--gold);
+      transform: rotate(45deg);
+    }
+
+    /* ─── AMBIANCE ─── */
+    #ambiance {
+      background: var(--brown-deep);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; padding: 0;
+    }
+    .ambiance-text {
+      padding: 5rem 4rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .ambiance-text .section-title { color: var(--cream); }
+    .ambiance-text .section-label { color: var(--gold); }
+    .ambiance-text .ornament-line { background: var(--gold); }
+    .ambiance-text .ornament-diamond { background: var(--gold); }
+    .ambiance-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; line-height: 1.85;
+      color: var(--stone); margin-bottom: 2rem;
+    }
+    .ambiance-img {
+      position: relative; overflow: hidden; min-height: 520px;
+    }
+    .ambiance-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: sepia(15%) brightness(0.88);
+      transition: transform 0.8s ease;
+    }
+    .ambiance-img:hover img { transform: scale(1.04); }
+    .ambiance-img::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(200,148,58,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .feats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .feat {
+      border-left: 2px solid var(--gold);
+      padding-left: 1rem;
+    }
+    .feat-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold-light); font-size: 0.95rem; font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .feat-desc {
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--stone); font-size: 0.9rem; margin-top: 0.25rem;
+    }
+
+    /* ─── FILTER/RATING SECTION ─── */
+    #avis {
+      background: var(--cream-light);
+      padding: 5rem 1.5rem 6rem;
+      text-align: center;
+    }
+    .avis-inner {
+      max-width: 600px; margin: 0 auto;
+    }
+    .avis-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; color: var(--brown-warm);
+      line-height: 1.7; margin-bottom: 2.5rem;
+    }
+    /* Stars */
+    .stars-wrap {
+      display: inline-flex; gap: 0.5rem;
+      margin-bottom: 2rem;
+      user-select: none;
+    }
+    .star-btn {
+      background: none; border: none; cursor: pointer;
+      font-size: 2.8rem; line-height: 1;
+      color: #D9CBBA;
+      transition: color 0.18s, transform 0.15s;
+      padding: 0.15rem;
+    }
+    .star-btn:hover,
+    .star-btn.hovered,
+    .star-btn.selected { color: var(--gold); transform: scale(1.18); }
+    .star-btn.selected { color: var(--gold-light); transform: scale(1.22); }
+
+    /* Rating label */
+    .rating-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--brown-warm); height: 1.5rem;
+      transition: opacity 0.3s;
+    }
+
+    /* Result panels */
+    .result-panel {
+      display: none;
+      margin-top: 2rem;
+      animation: panelIn 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;
+    }
+    .result-panel.visible { display: block; }
+    @keyframes panelIn {
+      from { opacity: 0; transform: translateY(18px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Positive panel */
+    .panel-positive {
+      background: linear-gradient(135deg, #1E3A2A 0%, #0F2A1A 100%);
+      border: 1px solid rgba(80,200,120,0.25);
+      border-radius: 2px; padding: 2.5rem 2rem;
+      color: var(--white);
+    }
+    .panel-positive .panel-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+    .panel-positive h3 {
+      font-size: 1.4rem; color: #6EE09A; margin-bottom: 0.6rem;
+    }
+    .panel-positive p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; color: #B8D9C2; margin-bottom: 1.5rem; line-height: 1.6;
+    }
+    .btn-google {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: #4285F4; color: white;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em;
+      padding: 0.85rem 2rem; text-decoration: none;
+      border-radius: 2px; transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-google:hover {
+      background: #3266D2;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(66,133,244,0.4);
+    }
+    .btn-google svg { width: 18px; height: 18px; }
+
+    /* Negative panel */
+    .panel-negative {
+      background: var(--white);
+      border: 1px solid var(--stone);
+      border-top: 3px solid var(--ember);
+      border-radius: 2px; padding: 2.5rem 2rem;
+      text-align: left;
+    }
+    .panel-negative .panel-header {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .panel-negative .panel-icon { font-size: 1.6rem; }
+    .panel-negative h3 {
+      font-size: 1.3rem; color: var(--ember);
+    }
+    .panel-negative .panel-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; color: var(--brown-warm);
+      line-height: 1.65; margin-bottom: 1.8rem;
+      border-left: 3px solid var(--gold-pale);
+      padding-left: 1rem;
+    }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--brown-warm); margin-bottom: 0.4rem;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      font-family: 'Lato', sans-serif; font-size: 0.9rem;
+      background: var(--cream-light); color: var(--brown-deep);
+      border: 1px solid var(--stone);
+      padding: 0.75rem 1rem; outline: none;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .btn-send {
+      width: 100%; background: var(--brown-deep); color: var(--cream);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 1rem; border: none; cursor: pointer;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn-send:hover { background: var(--brown-mid); transform: translateY(-1px); }
+    .send-confirm {
+      display: none; text-align: center; padding: 1rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; color: var(--brown-warm);
+    }
+    .send-confirm.visible { display: block; }
+
+    /* ─── MENU SECTION ─── */
+    #menu {
+      background: var(--white);
+      padding: 5rem 1.5rem 6rem;
+    }
+    .menu-header { text-align: center; margin-bottom: 3.5rem; }
+    .menu-header .ornament { justify-content: center; }
+    .menu-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-style: italic;
+      color: var(--brown-warm); max-width: 480px; margin: 0 auto;
+    }
+    .menu-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem; max-width: 960px; margin: 0 auto;
+    }
+    .menu-category {
+      background: var(--cream-light);
+      border: 1px solid #E0D4C0;
+      padding: 2rem;
+    }
+    .menu-cat-title {
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--brown-deep);
+      border-bottom: 1px solid var(--gold-pale);
+      padding-bottom: 0.75rem; margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .menu-cat-title span { color: var(--gold); }
+    .menu-item {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 0.7rem 0;
+      border-bottom: 1px dashed #E0D4C0;
+    }
+    .menu-item:last-child { border-bottom: none; }
+    .item-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; color: var(--brown-deep);
+    }
+    .item-note {
+      display: block;
+      font-size: 0.78rem; font-style: italic;
+      color: var(--brown-warm); margin-top: 0.15rem;
+    }
+    .item-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem; font-weight: 700;
+      color: var(--gold);
+      white-space: nowrap; margin-left: 1rem;
+    }
+
+    /* ─── PHOTOS ─── */
+    #photos {
+      background: var(--brown-dark);
+      padding: 5rem 1.5rem;
+    }
+    .photos-header { text-align: center; margin-bottom: 2.5rem; }
+    .photos-header .section-title { color: var(--cream); }
+    .photos-header .section-label { color: var(--gold); }
+    .photos-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 0.6rem;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .photo-item {
+      overflow: hidden; position: relative;
+      background: var(--brown-mid);
+    }
+    .photo-item:first-child { grid-row: span 2; }
+    .photo-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block; min-height: 200px;
+      filter: sepia(10%) brightness(0.82) contrast(1.05);
+      transition: transform 0.7s ease, filter 0.4s ease;
+    }
+    .photo-item:hover img {
+      transform: scale(1.06);
+      filter: sepia(5%) brightness(0.9) contrast(1.02);
+    }
+    .photo-item::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(26,16,8,0.5) 100%);
+      pointer-events: none;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--brown-deep);
+      color: var(--stone);
+      padding: 3rem 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(200,148,58,0.2);
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 700; color: var(--gold-light);
+      margin-bottom: 0.5rem;
+    }
+    .footer-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; color: var(--brown-warm); font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+    .footer-info {
+      font-size: 0.85rem; line-height: 1.9; color: var(--stone);
+    }
+    .footer-divider {
+      width: 60px; height: 1px; background: var(--gold);
+      margin: 1.5rem auto;
+    }
+    .footer-powered {
+      font-size: 0.72rem; letter-spacing: 0.12em;
+      color: var(--brown-warm); margin-top: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      #ambiance { grid-template-columns: 1fr; }
+      .ambiance-text { padding: 3rem 2rem; }
+      .feats { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .photos-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .photo-item:first-child { grid-row: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar" class="">
+    <div class="nav-logo">La Bûcherie</div>
+    <ul class="nav-links">
+      <li><a href="#ambiance">L'Esprit</a></li>
+      <li><a href="#menu">La Carte</a></li>
+      <li><a href="#photos">Galerie</a></li>
+      <li><a href="#avis">Votre Avis</a></li>
+    </ul>
+  </nav>
+
+  <!-- ══ HERO ══ -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge">✦ Vierzon, Berry · Depuis 1987 ✦</div>
+      <h1 class="hero-title">La <span>Bûcherie</span></h1>
+      <p class="hero-sub italic-serif">Crêperie Traditionnelle &amp; Gastronomique</p>
+      <div class="hero-divider"><span class="hero-divider-icon">✦</span></div>
+      <div class="hero-actions">
+        <a href="#menu" class="btn-gold">Découvrir la Carte</a>
+        <a href="#avis" class="btn-outline">Laisser un Avis</a>
+      </div>
+    </div>
+    <div class="hero-scroll" onclick="document.getElementById('ambiance').scrollIntoView({behavior:'smooth'})">↓</div>
+  </section>
+
+  <!-- ══ AMBIANCE ══ -->
+  <section id="ambiance">
+    <div class="ambiance-text">
+      <span class="section-label">Notre Maison</span>
+      <h2 class="section-title" style="color:var(--cream)">L'Art du Feu<br>&amp; de la Farine</h2>
+      <div class="ornament">
+        <div class="ornament-line"></div>
+        <div class="ornament-diamond"></div>
+      </div>
+      <p class="ambiance-desc">
+        Sous les vieilles poutres de chêne, au crépitement d'un feu de bois, 
+        La Bûcherie perpétue la tradition crêpière depuis plus de trente ans. 
+        Ici, chaque galette est confectionnée à la minute, avec la farine de 
+        sarrasin du Berry et les produits du terroir.
+      </p>
+      <div class="feats">
+        <div class="feat">
+          <div class="feat-title">Colombages &amp; Poutres</div>
+          <div class="feat-desc">Un écrin de bois authentique du XVIIIe siècle</div>
+        </div>
+        <div class="feat">
+          <div class="feat-title">Produits Locaux</div>
+          <div class="feat-desc">Producteurs berrichons sélectionnés avec soin</div>
+        </div>
+        <div class="feat">
+          <div class="feat-title">Feu de Cheminée</div>
+          <div class="feat-desc">La chaleur d'un vrai coin du feu en hiver</div>
+        </div>
+        <div class="feat">
+          <div class="feat-title">Cuisine Maison</div>
+          <div class="feat-desc">Tout est fait ici, rien n'est industriel</div>
+        </div>
+      </div>
+    </div>
+    <div class="ambiance-img">
+      <img src="La%20B%C3%BBcherie%20%E2%80%94%20Cr%C3%AAperie%20Traditionnelle%20&amp;%20Gastronomique%20%C2%B7%20Vierzon_files/photo-1414235077428-338989a2e8c0.avif" alt="Intérieur chaleureux de La Bûcherie" loading="lazy">
+    </div>
+  </section>
+
+  <!-- ══ AVIS / FILTRE ══ -->
+  <section id="avis">
+    <div class="avis-inner">
+      <span class="section-label" style="display:block;text-align:center">Votre Expérience</span>
+      <h2 class="section-title" style="text-align:center">Votre avis<br>nous est précieux</h2>
+      <div class="ornament" style="justify-content:center">
+        <div class="ornament-line"></div>
+        <div class="ornament-diamond"></div>
+        <div class="ornament-line" style="transform:scaleX(-1)"></div>
+      </div>
+      <p class="avis-intro">
+        Comment s'est déroulée votre soirée sous nos colombages ?<br>
+        Chaque retour nous aide à grandir.
+      </p>
+
+      <!-- Stars -->
+      <div class="stars-wrap" id="starsWrap" role="group" aria-label="Note de 1 à 5 étoiles">
+        <button class="star-btn" data-val="1" aria-label="1 étoile" onclick="rateRestaurant(1)">★</button>
+        <button class="star-btn" data-val="2" aria-label="2 étoiles" onclick="rateRestaurant(2)">★</button>
+        <button class="star-btn" data-val="3" aria-label="3 étoiles" onclick="rateRestaurant(3)">★</button>
+        <button class="star-btn" data-val="4" aria-label="4 étoiles" onclick="rateRestaurant(4)">★</button>
+        <button class="star-btn" data-val="5" aria-label="5 étoiles" onclick="rateRestaurant(5)">★</button>
+      </div>
+      <div class="rating-label" id="ratingLabel">Cliquez pour noter votre visite</div>
+
+      <!-- Panel POSITIF -->
+      <div class="result-panel panel-positive" id="panelPositif">
+        <div class="panel-icon">🌟</div>
+        <h3>Vous nous faites briller !</h3>
+        <p>
+          Votre satisfaction est notre plus belle récompense. 
+          Partagez votre expérience sur Google et aidez d'autres gourmands 
+          à découvrir La Bûcherie.
+        </p>
+        <a href="https://www.google.com/maps/search/La+B%C3%BBcherie+Vierzon" target="_blank" rel="noopener" class="btn-google">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 110-12.064c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0012.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748z"></path>
+          </svg>
+          Poster mon avis sur Google Maps
+        </a>
+      </div>
+
+      <!-- Panel NÉGATIF -->
+      <div class="result-panel panel-negative" id="panelNegatif">
+        <div class="panel-header">
+          <span class="panel-icon">🔥</span>
+          <h3>Nous ne sommes pas à la hauteur.</h3>
+        </div>
+        <p class="panel-sub">
+          Votre insatisfaction nous touche profondément. Nous sommes désolés de ne pas avoir 
+          été à la hauteur de votre attente. Confiez-nous ce qui n'a pas fonctionné — 
+          votre message ira directement au gérant, en toute confidentialité.
+        </p>
+        <form id="privateForm" onsubmit="sendPrivateForm(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="nom">Votre prénom</label>
+              <input type="text" id="nom" placeholder="Marie">
+            </div>
+            <div class="form-group">
+              <label for="email">Votre e-mail</label>
+              <input type="email" id="email" placeholder="marie@exemple.fr">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message">Ce qui s'est passé</label>
+            <textarea id="message" rows="4" placeholder="Décrivez votre expérience avec le plus de détails possible..."></textarea>
+          </div>
+          <button type="submit" class="btn-send">Envoyer au gérant en privé</button>
+        </form>
+        <div class="send-confirm" id="sendConfirm">
+          ✦ &nbsp;Message transmis. Le gérant vous répondra sous 24h. 
+Nous comptons sur vous pour nous donner une seconde chance.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ MENU ══ -->
+  <section id="menu">
+    <div class="menu-header">
+      <span class="section-label">À la Table</span>
+      <h2 class="section-title">Notre Carte</h2>
+      <div class="ornament" style="justify-content:center">
+        <div class="ornament-line"></div>
+        <div class="ornament-diamond"></div>
+        <div class="ornament-line" style="transform:scaleX(-1)"></div>
+      </div>
+      <p class="menu-intro">Galettes de sarrasin &amp; crêpes de froment, toutes préparées à la minute</p>
+    </div>
+    <div class="menu-grid">
+
+      <!-- Galettes -->
+      <div class="menu-category">
+        <h3 class="menu-cat-title"><span>✦</span> Nos Galettes Signature</h3>
+        <div class="menu-item">
+          <div>
+            <span class="item-name">La Bûcheronne</span>
+            <span class="item-note">Chèvre fondant, miel de Berry, noix, roquette</span>
+          </div>
+          <span class="item-price">14 €</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="item-name">La Forestière</span>
+            <span class="item-note">Champignons de Paris, crème fraîche, lardons fumés</span>
+          </div>
+          <span class="item-price">13 €</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="item-name">La Complète du Berry</span>
+            <span class="item-note">Jambon blanc, emmental, œuf miroir, beurre</span>
+          </div>
+          <span class="item-price">11 €</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="item-name">La Paysanne</span>
+            <span class="item-note">Andouille, pomme de terre, crème, oignons confits</span>
+          </div>
+          <span class="item-price">12 €</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="item-name">La Végétale</span>
+            <span class="item-note">Poivrons rôtis, courgette, ricotta, basilic frais</span>
+          </div>
+          <span class="item-price">11 €</span>
+        </div>
+      </div>
+
+      <!-- Crêpes sucrées -->
+      <div class="menu-category">
+        <h3 class="menu-cat-title"><span>✦</span> Nos Douceurs</h3>
+        <div class="menu-item">
+          <div>
+            <span class="item-name">Beurre &amp; Sucre</span>
+            <span class="item-note">L'intemporel, simplement parfait</span>
+          </div>
+          <span class="item-price">6 €</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="item-name">Pommes Caramélisées</span>
+            <span class="item-note">Beurre salé, caramel maison, cidre du Berry</span>
+          </div>
+          <span class="item-price">9 €</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="item-name">Chocolat Maison</span>
+            <span class="item-note">Ganache 70%, amandes torréfiées, fleur de sel</span>
+          </div>
+          <span class="item-price">8 €</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="item-name">La Suzette</span>
+            <span class="item-note">Orange, Grand Marnier, flambée en salle</span>
+          </div>
+          <span class="item-price">11 €</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="item-name">Fraises &amp; Chantilly</span>
+            <span class="item-note">Fraises de Sologne, crème fouettée maison</span>
+          </div>
+          <span class="item-price">10 €</span>
+        </div>
+      </div>
+
+      <!-- Boissons -->
+      <div class="menu-category">
+        <h3 class="menu-cat-title"><span>✦</span> Boissons &amp; Cidres</h3>
+        <div class="menu-item">
+          <div>
+            <span class="item-name">Cidre Brut Artisanal</span>
+            <span class="item-note">Bolée 33 cl, brasserie du Cher</span>
+          </div>
+          <span class="item-price">5 €</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="item-name">Cidre Doux</span>
+            <span class="item-note">Bolée 33 cl, fruité &amp; léger</span>
+          </div>
+          <span class="item-price">5 €</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="item-name">Vin de Reuilly</span>
+            <span class="item-note">Verre, sauvignon local</span>
+          </div>
+          <span class="item-price">6 €</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="item-name">Eau Minérale</span>
+            <span class="item-note">Carafe offerte sur demande</span>
+          </div>
+          <span class="item-price">—</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ PHOTOS ══ -->
+  <section id="photos">
+    <div class="photos-header">
+      <span class="section-label">Galerie</span>
+      <h2 class="section-title">L'Âme de la Maison</h2>
+      <div class="ornament" style="justify-content:center;margin-top:1.2rem">
+        <div class="ornament-line" style="background:var(--gold)"></div>
+        <div class="ornament-diamond" style="background:var(--gold)"></div>
+        <div class="ornament-line" style="background:var(--gold);transform:scaleX(-1)"></div>
+      </div>
+    </div>
+    <div class="photos-grid">
+      <div class="photo-item">
+        <img src="La%20B%C3%BBcherie%20%E2%80%94%20Cr%C3%AAperie%20Traditionnelle%20&amp;%20Gastronomique%20%C2%B7%20Vierzon_files/photo-1466978913421-dad2ebd01d17.avif" alt="Salle principale La Bûcherie" loading="lazy">
+      </div>
+      <div class="photo-item">
+        <img src="La%20B%C3%BBcherie%20%E2%80%94%20Cr%C3%AAperie%20Traditionnelle%20&amp;%20Gastronomique%20%C2%B7%20Vierzon_files/photo-1484723091739-30a097e8f929.avif" alt="Galette signature" loading="lazy">
+      </div>
+      <div class="photo-item">
+        <img src="La%20B%C3%BBcherie%20%E2%80%94%20Cr%C3%AAperie%20Traditionnelle%20&amp;%20Gastronomique%20%C2%B7%20Vierzon_files/photo-1541614101331-1a5a3a194e92.avif" alt="Cheminée et poutres" loading="lazy">
+      </div>
+      <div class="photo-item">
+        <img src="La%20B%C3%BBcherie%20%E2%80%94%20Cr%C3%AAperie%20Traditionnelle%20&amp;%20Gastronomique%20%C2%B7%20Vierzon_files/photo-1559329007-40df8a9345d8.avif" alt="Crêpe sucrée maison" loading="lazy">
+      </div>
+      <div class="photo-item">
+        <img src="La%20B%C3%BBcherie%20%E2%80%94%20Cr%C3%AAperie%20Traditionnelle%20&amp;%20Gastronomique%20%C2%B7%20Vierzon_files/photo-1414235077428-338989a2e8c0_002.avif" alt="Ambiance soirée" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="footer-logo">La Bûcherie</div>
+    <p class="footer-tagline">Crêperie Traditionnelle &amp; Gastronomique</p>
+    <div class="footer-divider"></div>
+    <div class="footer-info">
+      <p>12 Rue du Bois — 18100 Vierzon</p>
+      <p>02 48 XX XX XX &nbsp;·&nbsp; contact@labucherie-vierzon.fr</p>
+      <p style="margin-top:0.5rem">Ouvert du Mardi au Dimanche · 12h–14h &amp; 19h–22h</p>
+    </div>
+    <div class="footer-divider"></div>
+    <p class="footer-powered">✦ Propulsé par votre Solution IA Réputation ✦</p>
+  </footer>
+
+  <script>
+    /* ─── NAVBAR SCROLL ─── */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    /* ─── STAR RATING FILTER ─── */
+    const stars = document.querySelectorAll('.star-btn');
+    const label = document.getElementById('ratingLabel');
+    const panelPos = document.getElementById('panelPositif');
+    const panelNeg = document.getElementById('panelNegatif');
+    let currentRating = 0;
+
+    const labels = ['', 'Très déçu', 'Déçu', 'Correct', 'Très bien', 'Excellent !'];
+    const labelColors = ['', '#C0392B', '#E67E22', '#7F8C8D', '#27AE60', '#C8943A'];
+
+    function highlightStars(n) {
+      stars.forEach((s, i) => {
+        s.classList.toggle('hovered', i < n);
+        s.classList.remove('selected');
+      });
+    }
+
+    stars.forEach((star, idx) => {
+      star.addEventListener('mouseenter', () => highlightStars(idx + 1));
+      star.addEventListener('mouseleave', () => {
+        highlightStars(0);
+        if (currentRating) highlightStars(currentRating);
+      });
+    });
+
+    function rateRestaurant(n) {
+      currentRating = n;
+      label.textContent = labels[n];
+      label.style.color = labelColors[n];
+
+      // Mark selected stars
+      stars.forEach((s, i) => {
+        s.classList.toggle('selected', i < n);
+        s.classList.remove('hovered');
+      });
+
+      // Show correct panel
+      panelPos.classList.remove('visible');
+      panelNeg.classList.remove('visible');
+
+      setTimeout(() => {
+        if (n >= 4) {
+          panelPos.classList.add('visible');
+        } else {
+          panelNeg.classList.add('visible');
+        }
+        // Smooth scroll to panel
+        document.getElementById(n >= 4 ? 'panelPositif' : 'panelNegatif')
+          .scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 150);
+    }
+
+    /* ─── FORM SUBMIT ─── */
+    function sendPrivateForm(e) {
+      e.preventDefault();
+      document.getElementById('privateForm').style.display = 'none';
+      document.getElementById('sendConfirm').classList.add('visible');
+    }
+  </script>
+
+
+</body></html>
